@@ -23,8 +23,20 @@ button{border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:75
 <section class="panel"><h2>＋ 新しいMMLを投稿</h2>
 <form id="postForm">
 <label for="title">曲名 *</label><input id="title" required maxlength="100" placeholder="例：Vulcan Venture">
-<label for="author">投稿者名</label><input id="author" maxlength="40" placeholder="ニックネーム（空欄なら匿名）">
-<label for="genre">ジャンル</label><select id="genre"><option>ゲーム音楽</option><option>アニメ・映画</option><option>J-POP</option><option>クラシック</option><option>オリジナル</option><option>その他</option></select>
+
+<label for="author">投稿者名</label>
+<input id="author" maxlength="40"
+ placeholder="ニックネーム（空欄なら匿名）">
+
+<label for="deleteToken">削除用パスワード（8文字以上）</label>
+<input id="deleteToken" type="password"
+ minlength="8" maxlength="100" required
+ autocomplete="new-password"
+ placeholder="自分の投稿を削除するときに使う">
+
+<p class="hint">削除用パスワードは忘れないように保管してください。他のサービスと同じパスワードは使わないでください。</p>
+
+<label for="genre">ジャンル</label>select id="genre"><option>ゲーム音楽</option><option>アニメ・映画</option><option>J-POP</option><option>クラシック</option><option>オリジナル</option><option>その他</option></select>
 <div class="partbox"><h3>🎼 メロディ</h3><div class="sub">メロディのMMLを入力・貼り付け</div><textarea id="melody" placeholder="メロディのMML（任意）"></textarea></div>
 <div class="partbox"><h3>🎹 和音１</h3><div class="sub">和音１のMMLを入力・貼り付け</div><textarea id="chord1" placeholder="和音１のMML（任意）"></textarea></div>
 <div class="partbox"><h3>🎸 和音２</h3><div class="sub">和音２のMMLを入力・貼り付け</div><textarea id="chord2" placeholder="和音２のMML（任意）"></textarea></div>
