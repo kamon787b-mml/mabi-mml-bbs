@@ -3,243 +3,282 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>マビノギモバイル MML BBS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171421">
+<title>マビノギモバイル MML BBS ～上海かも美幻樂団～</title>
 <style>
 :root {
   color-scheme: dark;
-  --bg: #120d1d;
-  --panel: #20162e;
-  --panel2: #2c2040;
-  --text: #f5edff;
-  --muted: #b9a9ca;
-  --accent: #b58aff;
-  --danger: #ff737e;
-  --border: #49365e;
+  --bg:#111019;
+  --panel:#1c1a29;
+  --line:#373149;
+  --text:#f6f2ff;
+  --muted:#b2abc6;
+  --accent:#c0a7ff;
+  --mint:#8ee8d0;
 }
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, sans-serif;
-  line-height: 1.6;
+  margin:0;
+  background:radial-gradient(ellipse at top,#33264b 0,#111019 58%);
+  color:var(--text);
+  font:16px/1.55 system-ui,-apple-system,"Noto Sans JP",sans-serif;
 }
-main {
-  width: min(920px, 100%);
-  margin: auto;
-  padding: 18px 14px 36px;
+main { max-width:1060px; margin:auto; padding:22px 15px 55px; }
+.hero {
+  text-align:center;
+  padding:30px 20px 25px;
+  border:1px solid #4a3d65;
+  border-radius:22px;
+  background:linear-gradient(135deg,#302440,#1b1a29 70%);
+  margin-bottom:16px;
 }
-h1 { font-size: 1.55rem; line-height: 1.4; }
-h2 { font-size: 1.2rem; }
-h3 { overflow-wrap: anywhere; }
-p { margin-top: 6px; }
-.muted, .meta { color: var(--muted); font-size: .9rem; }
-.panel, .post {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
-  margin: 14px 0;
+.hero h1 { font-size:clamp(1.65rem,6vw,2.65rem); line-height:1.2; }
+.kicker { color:var(--mint); font-size:.76rem; letter-spacing:.16em; font-weight:800; }
+.subtitle { color:#d3c3ff; }
+.pill {
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:99px;
+  background:#352b4d;
+  color:#e0d6ff;
+  font-size:.77rem;
+  margin:3px;
 }
+.notice {
+  background:#1c2d2a;
+  border:1px solid #31584f;
+  color:#c1f7e8;
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:.86rem;
+  margin:14px 0 17px;
+  overflow-wrap:anywhere;
+}
+.layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:16px;
+  align-items:start;
+}
+.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+  min-width:0;
+}
+.panel h2 { font-size:1.13rem; margin:0 0 13px; }
 label {
-  display: block;
-  margin: 12px 0 5px;
-  font-weight: 600;
+  display:block;
+  font-size:.9rem;
+  color:#e1d9f2;
+  margin:12px 0 6px;
 }
-input, select, textarea, button {
-  font: inherit;
-}
-input, select, textarea {
-  width: 100%;
-  padding: 11px;
-  color: var(--text);
-  background: #160f22;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+input,select,textarea {
+  width:100%;
+  border:1px solid #4b435f;
+  background:#12111b;
+  color:var(--text);
+  border-radius:10px;
+  padding:11px;
+  font:inherit;
 }
 textarea {
-  min-height: 100px;
-  resize: vertical;
-  font-family: monospace;
+  min-height:112px;
+  resize:vertical;
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:.9rem;
 }
 button {
-  border: 0;
-  border-radius: 8px;
-  padding: 10px 14px;
-  background: var(--accent);
-  color: #211331;
-  font-weight: 700;
-  cursor: pointer;
-  margin: 5px 4px 5px 0;
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  font:inherit;
+  font-weight:750;
+  cursor:pointer;
+  background:var(--accent);
+  color:#1a1328;
 }
 button.secondary {
-  background: var(--panel2);
-  border: 1px solid var(--border);
-  color: var(--text);
+  background:#302b40;
+  color:var(--text);
+  border:1px solid #4a435d;
 }
-button.danger {
-  background: #662833;
-  color: #fff;
-  border: 1px solid #a94b5a;
+button.danger { background:#713b50; color:white; }
+button:disabled { opacity:.55; cursor:wait; }
+.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.hint,.muted { color:var(--muted); font-size:.83rem; }
+.toolbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.toolbar input { flex:1; min-width:150px; }
+.partbox {
+  border:1px solid #403751;
+  border-radius:13px;
+  padding:12px;
+  margin-top:11px;
+  background:#201d2e;
 }
-button:disabled { opacity: .55; cursor: wait; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.full { grid-column: 1 / -1; }
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 12px;
+.partbox h3 { margin:0; font-size:.96rem; }
+.partbox .sub { font-size:.77rem; color:var(--muted); margin:2px 0 6px; }
+.post {
+  border:1px solid var(--line);
+  background:#171520;
+  border-radius:14px;
+  padding:15px;
+  margin-top:11px;
 }
 .posthead {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  justify-content:space-between;
 }
-.posthead h3 { margin: 0; }
+.post h3 { margin:0; font-size:1.05rem; overflow-wrap:anywhere; }
+.meta { color:var(--muted); font-size:.8rem; margin:5px 0 10px; }
 .tag {
-  color: #e3d0ff;
-  background: #44315e;
-  border-radius: 20px;
-  padding: 3px 10px;
-  font-size: .8rem;
+  display:inline-block;
+  border:1px solid #55476e;
+  color:#ded2ff;
+  border-radius:7px;
+  padding:2px 7px;
+  font-size:.74rem;
+  margin:2px;
 }
-.partview {
-  margin-top: 12px;
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
+.partview { margin-top:9px; }
+.partview summary {
+  cursor:pointer;
+  font-size:.88rem;
+  font-weight:700;
+  color:#d9ccff;
+  padding:5px 0;
 }
-summary { cursor: pointer; }
 .mml {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  background: #130d1c;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: .9rem;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  max-height:145px;
+  overflow:auto;
+  background:#100f17;
+  border-radius:9px;
+  padding:10px;
+  font-size:.82rem;
+  margin:5px 0;
 }
-.status {
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: #282039;
-  overflow-wrap: anywhere;
-}
-.admin-panel {
-  border-color: #9770d4;
-}
-.admin-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.empty {
-  padding: 24px 8px;
-  text-align: center;
-  color: var(--muted);
-}
-footer {
-  margin-top: 30px;
-  text-align: center;
-  color: var(--muted);
-  font-size: .85rem;
-}
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
-  h1 { font-size: 1.35rem; }
-  main { padding: 12px 10px 28px; }
+.empty { text-align:center; padding:25px 8px; color:var(--muted); }
+footer { text-align:center; color:var(--muted); font-size:.78rem; padding:10px; }
+@media(max-width:760px) {
+  .layout { grid-template-columns:1fr; }
+  main { padding:13px 11px 35px; }
+  .hero { padding:25px 14px 20px; }
+  .panel { padding:15px; }
 }
 </style>
 </head>
 <body>
 <main>
-<header>
-  <h1>🎵 マビノギモバイル MML BBS</h1>
-  <p class="muted">～上海かも美幻樂団～</p>
-  <p>みんなのMMLを共有しよう！</p>
+
+<header class="hero">
+  <div class="kicker">MABINOGI MOBILE · MML SHARING BOARD</div>
+  <h1>マビノギモバイル MML BBS</h1>
+  <p class="subtitle">～上海かも美幻樂団～</p>
+  <p>MMLを投稿・検索して、パートごとにコピーしよう。</p>
+  <div>
+    <span class="pill">主旋律</span>
+    <span class="pill">伴奏</span>
+    <span class="pill">ベース</span>
+    <span class="pill">スマホ対応</span>
+  </div>
 </header>
 
-<div id="status" class="status" role="status">
-  掲示板に接続しています…
+<div class="notice" id="status">
+  <strong>共有掲示板：</strong>データベースに接続しています…
 </div>
 
+<div class="layout">
 <section class="panel">
-  <h2>📝 MMLを投稿</h2>
+  <h2>＋ 新しいMMLを投稿</h2>
+
   <form id="postForm">
-    <div class="grid">
-      <div>
-        <label for="title">曲名 *</label>
-        <input id="title" maxlength="100" required
-          placeholder="曲名を入力">
-      </div>
-      <div>
-        <label for="author">投稿者名</label>
-        <input id="author" maxlength="50"
-          placeholder="匿名でもOK">
-      </div>
-      <div class="full">
-        <label for="genre">ジャンル *</label>
-        <select id="genre" required>
-          <option value="ゲーム音楽">ゲーム音楽</option>
-          <option value="アニメ・特撮">アニメ・特撮</option>
-          <option value="J-POP">J-POP</option>
-          <option value="洋楽">洋楽</option>
-          <option value="クラシック">クラシック</option>
-          <option value="オリジナル">オリジナル</option>
-          <option value="その他">その他</option>
-        </select>
-      </div>
-      <div class="full">
-        <label for="melody">メロディ</label>
-        <textarea id="melody" spellcheck="false"
-          placeholder="メロディのMML"></textarea>
-      </div>
-      <div class="full">
-        <label for="chord1">和音１</label>
-        <textarea id="chord1" spellcheck="false"
-          placeholder="和音１のMML"></textarea>
-      </div>
-      <div class="full">
-        <label for="chord2">和音２</label>
-        <textarea id="chord2" spellcheck="false"
-          placeholder="和音２のMML"></textarea>
-      </div>
-      <div class="full">
-        <label for="deleteToken">削除用パスワード *</label>
-        <input id="deleteToken" type="password"
-          minlength="8" maxlength="200" required
-          autocomplete="new-password"
-          placeholder="8文字以上・忘れないように保管">
-        <p class="muted">
-          投稿者自身が後から削除するときに使います。
-          管理者はこのパスワードなしでも削除できます。
-        </p>
-      </div>
-      <div class="full">
-        <button type="submit">投稿する</button>
-      </div>
+    <label for="title">曲名 *</label>
+    <input id="title" required maxlength="100"
+      placeholder="例：Vulcan Venture">
+
+    <label for="author">投稿者名</label>
+    <input id="author" maxlength="40"
+      placeholder="ニックネーム（空欄なら匿名）">
+
+    <label for="genre">ジャンル</label>
+    <select id="genre">
+      <option>ゲーム音楽</option>
+      <option>アニメ・映画</option>
+      <option>J-POP</option>
+      <option>クラシック</option>
+      <option>オリジナル</option>
+      <option>その他</option>
+    </select>
+
+    <div class="partbox">
+      <h3>🎼 メロディ</h3>
+      <div class="sub">メロディのMMLを入力・貼り付け</div>
+      <textarea id="melody" placeholder="メロディのMML"></textarea>
     </div>
+
+    <div class="partbox">
+      <h3>🎹 和音１</h3>
+      <div class="sub">和音１のMMLを入力・貼り付け</div>
+      <textarea id="chord1" placeholder="和音１のMML"></textarea>
+    </div>
+
+    <div class="partbox">
+      <h3>🎸 和音２</h3>
+      <div class="sub">和音２のMMLを入力・貼り付け</div>
+      <textarea id="chord2" placeholder="和音２のMML"></textarea>
+    </div>
+
+    <label for="deleteToken">投稿削除用パスワード *</label>
+    <input id="deleteToken" type="password" required
+      autocomplete="new-password"
+      placeholder="自分の投稿を削除するときに使います">
+
+    <div class="actions">
+      <button type="submit" id="postButton">投稿する</button>
+      <button type="reset" class="secondary">入力をクリア</button>
+    </div>
+
+    <p class="hint">
+      曲名と、少なくとも1つのパートのMMLが必要です。
+      削除用パスワードは忘れないようにしてください。
+    </p>
   </form>
 </section>
 
-<section class="panel admin-panel">
-  <div class="admin-title">
-    <h2>🔐 管理者ページ</h2>
-    <span id="adminState" class="muted">ログアウト中</span>
+<section class="panel">
+  <h2>♫ 投稿されたMML</h2>
+
+  <div class="toolbar">
+    <input id="search" placeholder="曲名・投稿者・MMLで検索">
+    <select id="filter" style="max-width:150px">
+      <option value="">全ジャンル</option>
+      <option>ゲーム音楽</option>
+      <option>アニメ・映画</option>
+      <option>J-POP</option>
+      <option>クラシック</option>
+      <option>オリジナル</option>
+      <option>その他</option>
+    </select>
   </div>
 
+  <div id="posts">
+    <div class="empty">投稿を読み込んでいます…</div>
+  </div>
+</section>
+</div>
+
+<section class="panel" id="adminPanel">
+  <h2>🔐 管理者メニュー</h2>
   <p class="muted">
-    管理者ログイン後、投稿ごとに削除できます。
-    削除用パスワードを忘れた投稿も対象です。
+    管理者ログインすると、過去のテスト投稿を含め、
+    投稿を個別に削除できます。
   </p>
 
   <form id="adminLoginForm">
@@ -247,6 +286,7 @@ footer {
     <input id="adminPassword" type="password"
       autocomplete="current-password" required
       placeholder="管理者パスワードを入力">
+
     <div class="actions">
       <button id="adminLoginButton" type="submit">
         管理者ログイン
@@ -258,29 +298,8 @@ footer {
     </div>
   </form>
 
+  <p id="adminState" class="muted">ログアウト中</p>
   <p id="adminMessage" class="muted" role="status"></p>
-</section>
-
-<section class="panel">
-  <h2>📚 投稿一覧</h2>
-  <label for="search">曲名・投稿者・MMLを検索</label>
-  <input id="search" type="search" placeholder="検索ワード">
-
-  <label for="filter">ジャンルで絞り込み</label>
-  <select id="filter">
-    <option value="">すべてのジャンル</option>
-    <option value="ゲーム音楽">ゲーム音楽</option>
-    <option value="アニメ・特撮">アニメ・特撮</option>
-    <option value="J-POP">J-POP</option>
-    <option value="洋楽">洋楽</option>
-    <option value="クラシック">クラシック</option>
-    <option value="オリジナル">オリジナル</option>
-    <option value="その他">その他</option>
-  </select>
-
-  <div id="posts">
-    <div class="empty">読み込み中…</div>
-  </div>
 </section>
 
 <footer>
@@ -289,22 +308,38 @@ footer {
 </main>
 
 <script>
-const SUPABASE_URL = "https://jljaukitpgsxeviqlody.supabase.co";
-const SUPABASE_KEY = "sb_publishable_-08m3iSz0TuJT4x2QQ-C0g_aq6dSI3e";
+"use strict";
 
-const API = SUPABASE_URL + "/rest/v1/mml_posts";
-const RPC = SUPABASE_URL + "/rest/v1/rpc/delete_mml_post";
-const ADMIN_API = SUPABASE_URL + "/functions/v1/admin-delete-post";
+// ========================================
+// Supabase 接続設定
+// ========================================
+const SUPABASE_URL =
+  "https://jljaukitpgsxeviqlody.supabase.co";
 
-let posts = [];
+const SUPABASE_KEY =
+  "sb_publishable_-08m3iSz0TuJT4x2QQ-C0g_aq6dSI3e";
+
+const POSTS_API =
+  SUPABASE_URL + "/rest/v1/mml_posts";
+
+const DELETE_RPC =
+  SUPABASE_URL + "/rest/v1/rpc/delete_mml_post";
+
+const ADMIN_API =
+  SUPABASE_URL + "/functions/v1/admin-delete-post";
+
+// 管理者パスワードはブラウザのメモリ内だけで保持
 let adminPasswordForSession = null;
+let posts = [];
 
 const $ = (id) => document.getElementById(id);
 
+// ========================================
+// Supabase 通信
+// ========================================
 async function request(url, options = {}) {
   const headers = {
     apikey: SUPABASE_KEY,
-    Authorization: "Bearer " + SUPABASE_KEY,
     "Content-Type": "application/json",
     ...options.headers
   };
@@ -324,10 +359,17 @@ async function request(url, options = {}) {
   }
 
   if (!response.ok) {
-    const message =
-      data && typeof data === "object"
-        ? data.message || data.error || JSON.stringify(data)
-        : data || "HTTP " + response.status;
+    let message = "HTTP " + response.status;
+
+    if (data && typeof data === "object") {
+      message =
+        data.message ||
+        data.error ||
+        data.msg ||
+        JSON.stringify(data);
+    } else if (data) {
+      message = String(data);
+    }
 
     throw new Error(message);
   }
@@ -335,10 +377,21 @@ async function request(url, options = {}) {
   return data;
 }
 
-async function api(path = "", options = {}) {
-  return request(API + path, options);
+async function getPostsFromDatabase() {
+  const columns =
+    "id,title,author,genre,melody,chord1,chord2,created_at";
+
+  const url =
+    POSTS_API +
+    "?select=" + columns +
+    "&order=created_at.desc";
+
+  return request(url);
 }
 
+// ========================================
+// 画面表示用の処理
+// ========================================
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({
     "&": "&amp;",
@@ -350,17 +403,20 @@ function esc(value) {
 }
 
 function setStatus(message, isError = false) {
-  const el = $("status");
-  el.textContent = message;
-  el.style.color = isError ? "#ff8b9b" : "";
+  const status = $("status");
+
+  if (!status) return;
+
+  status.textContent = message;
+  status.style.color = isError ? "#ff9ca9" : "";
 }
 
-function fromRow(row) {
+function normalizePost(row) {
   return {
-    id: row.id,
+    id: Number(row.id),
     title: row.title || "無題",
     author: row.author || "名無し",
-    genre: row.genre || "",
+    genre: row.genre || "その他",
     melody: row.melody || "",
     chord1: row.chord1 || "",
     chord2: row.chord2 || "",
@@ -368,30 +424,71 @@ function fromRow(row) {
   };
 }
 
+function findPost(id) {
+  return posts.find(
+    (post) => post.id === Number(id)
+  );
+}
+
+function formatDate(value) {
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toLocaleString("ja-JP");
+}
+
+// ========================================
+// 投稿一覧の読み込み
+// ========================================
 async function loadPosts() {
   setStatus("投稿を読み込み中…");
 
   try {
-    const rows = await api(
-      "?select=id,title,author,genre,melody,chord1,chord2,created_at&order=created_at.desc"
+    const rows = await getPostsFromDatabase();
+
+    posts = Array.isArray(rows)
+      ? rows.map(normalizePost)
+      : [];
+
+    renderPosts();
+
+    setStatus("読み込み完了：投稿 " + posts.length + " 件");
+  } catch (error) {
+    console.error("投稿読み込みエラー:", error);
+
+    setStatus(
+      "読み込み失敗：" + error.message,
+      true
     );
 
-    posts = (Array.isArray(rows) ? rows : []).map(fromRow);
-    render();
-    setStatus("投稿 " + posts.length + " 件");
-  } catch (error) {
-    setStatus("読み込み失敗：" + error.message, true);
     $("posts").innerHTML =
-      '<p class="empty">投稿を読み込めませんでした。Supabaseの設定を確認してください。</p>';
+      '<div class="empty">' +
+      '投稿を読み込めませんでした。<br>' +
+      'Supabaseの接続設定・権限を確認してください。' +
+      '</div>';
   }
 }
 
-function render() {
-  const keyword = ($("search").value || "").trim().toLowerCase();
-  const genre = $("filterGenre").value;
+// ========================================
+// 投稿一覧の描画
+// ========================================
+function renderPosts() {
+  const container = $("posts");
+  if (!container) return;
+
+  const keyword = ($("search").value || "")
+    .trim()
+    .toLowerCase();
+
+  const selectedGenre = $("filter").value;
 
   const filtered = posts.filter((post) => {
-    const text = [
+    const searchableText = [
       post.title,
       post.author,
       post.genre,
@@ -400,66 +497,74 @@ function render() {
       post.chord2
     ].join(" ").toLowerCase();
 
-    return (!keyword || text.includes(keyword)) &&
-      (!genre || post.genre === genre);
+    return (
+      (!keyword || searchableText.includes(keyword)) &&
+      (!selectedGenre || post.genre === selectedGenre)
+    );
   });
 
   if (filtered.length === 0) {
-    $("posts").innerHTML =
-      '<p class="empty">投稿がありません。</p>';
+    container.innerHTML =
+      '<div class="empty">該当する投稿がありません。</div>';
     return;
   }
 
-  $("posts").innerHTML = filtered.map((post) => {
-    const date = post.created_at
-      ? new Date(post.created_at).toLocaleString("ja-JP")
+  container.innerHTML = filtered.map((post) => {
+    const adminButton = adminPasswordForSession
+      ? `<button type="button" class="danger"
+           onclick="adminDeletePost(${post.id})">
+           管理者削除
+         </button>`
       : "";
 
-    const adminButton = adminPasswordForSession
-      ? `<button type="button" class="danger" onclick="adminDeletePost(${Number(post.id)})">管理者削除</button>`
-      : "";
+    const parts = [
+      { key: "melody", title: "🎼 主旋律", value: post.melody },
+      { key: "chord1", title: "🎹 和音１", value: post.chord1 },
+      { key: "chord2", title: "🎸 和音２", value: post.chord2 }
+    ];
+
+    const partHtml = parts.map((part) => {
+      if (!part.value.trim()) return "";
+
+      return `
+        <details class="partview">
+          <summary>${esc(part.title)}</summary>
+          <pre class="mml">${esc(part.value)}</pre>
+          <button type="button" class="secondary"
+            onclick="copyPart(${post.id}, '${part.key}')">
+            このパートをコピー
+          </button>
+        </details>
+      `;
+    }).join("");
 
     return `
       <article class="post">
-        <div class="post-head">
+        <div class="posthead">
           <div>
             <h3>${esc(post.title)}</h3>
             <div class="meta">
-              ${esc(post.author)} ・ ${esc(post.genre)} ・ ${esc(date)}
-              ・ ID: ${Number(post.id)}
+              投稿者：${esc(post.author)}<br>
+              ジャンル：${esc(post.genre)}<br>
+              ${esc(formatDate(post.created_at))}
+              ・ ID: ${post.id}
             </div>
           </div>
         </div>
 
-        <div class="mml-block">
-          <strong>主旋律</strong>
-          <pre>${esc(post.melody)}</pre>
-          <div class="actions">
-            <button type="button" onclick="copyPart(${Number(post.id)}, 'melody')">主旋律をコピー</button>
-          </div>
-        </div>
-
-        ${post.chord1 ? `
-          <div class="mml-block">
-            <strong>伴奏1</strong>
-            <pre>${esc(post.chord1)}</pre>
-            <div class="actions">
-              <button type="button" onclick="copyPart(${Number(post.id)}, 'chord1')">伴奏1をコピー</button>
-            </div>
-          </div>` : ""}
-
-        ${post.chord2 ? `
-          <div class="mml-block">
-            <strong>伴奏2</strong>
-            <pre>${esc(post.chord2)}</pre>
-            <div class="actions">
-              <button type="button" onclick="copyPart(${Number(post.id)}, 'chord2')">伴奏2をコピー</button>
-            </div>
-          </div>` : ""}
+        ${partHtml}
 
         <div class="actions">
-          <button type="button" onclick="copyAll(${Number(post.id)})">全部コピー</button>
-          <button type="button" class="danger" onclick="deletePost(${Number(post.id)})">投稿者として削除</button>
+          <button type="button"
+            onclick="copyAll(${post.id})">
+            全部コピー
+          </button>
+
+          <button type="button" class="secondary"
+            onclick="deletePost(${post.id})">
+            投稿者として削除
+          </button>
+
           ${adminButton}
         </div>
       </article>
@@ -467,26 +572,19 @@ function render() {
   }).join("");
 }
 
-async function sha256Hex(value) {
-  const bytes = new TextEncoder().encode(value);
-  const hash = await crypto.subtle.digest("SHA-256", bytes);
-
-  return Array.from(new Uint8Array(hash))
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
-}
-
+// ========================================
+// MML コピー機能
+// ========================================
 async function copyText(value) {
   try {
     await navigator.clipboard.writeText(value);
     alert("コピーしました！");
-  } catch {
-    prompt("下の文字列をコピーしてください", value);
+  } catch (error) {
+    window.prompt(
+      "コピーできない場合は、以下の文字列を手動でコピーしてください。",
+      value
+    );
   }
-}
-
-function findPost(id) {
-  return posts.find((post) => Number(post.id) === Number(id));
 }
 
 window.copyPart = async function(id, part) {
@@ -496,65 +594,48 @@ window.copyPart = async function(id, part) {
   await copyText(post[part] || "");
 };
 
-window.copyTitle = async function(id) {
-  const post = findPost(id);
-  if (!post) return;
-
-  await copyText(post.title || "");
-};
-
 window.copyAll = async function(id) {
   const post = findPost(id);
   if (!post) return;
 
-  const content = [
-    "タイトル: " + post.title,
-    "作者: " + post.author,
+  const text = [
+    "曲名: " + post.title,
+    "投稿者: " + post.author,
     "ジャンル: " + post.genre,
     "",
     "[主旋律]",
     post.melody,
     "",
-    "[伴奏1]",
+    "[和音１]",
     post.chord1,
     "",
-    "[伴奏2]",
+    "[和音２]",
     post.chord2
   ].join("\n");
 
-  await copyText(content);
+  await copyText(text);
 };
 
-window.deletePost = async function(id) {
-  const post = findPost(id);
-  if (!post) return;
-
-  const token = prompt(
-    "この投稿を登録したときの削除パスワードを入力してください。"
+// ========================================
+// 削除パスワードのハッシュ化
+// ========================================
+async function sha256Hex(value) {
+  const bytes = new TextEncoder().encode(value);
+  const hash = await crypto.subtle.digest(
+    "SHA-256",
+    bytes
   );
 
-  if (token === null || token === "") return;
+  return Array.from(new Uint8Array(hash))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+</script>
 
-  if (!confirm("「" + post.title + "」を削除しますか？")) return;
-
-  try {
-    const tokenHash = await sha256Hex(token);
-
-    await request(RPC, {
-      method: "POST",
-      body: JSON.stringify({
-        p_id: Number(id),
-        p_token_hash: tokenHash
-      })
-    });
-
-    alert("削除しました。");
-    await loadPosts();
-  } catch (error) {
-    alert("削除できませんでした。\n" + error.message);
-  }
-};
-
+<script>
+// ========================================
+// 新規投稿
+// ========================================
 $("postForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -566,20 +647,29 @@ $("postForm").addEventListener("submit", async (event) => {
   const chord2 = $("chord2").value.trim();
   const deleteToken = $("deleteToken").value;
 
-  if (!title || !melody || !deleteToken) {
-    alert("タイトル・主旋律・削除パスワードを入力してください。");
+  if (!title) {
+    alert("曲名を入力してください。");
     return;
   }
 
-  const submitButton = event.submitter;
-  if (submitButton) submitButton.disabled = true;
+  if (!melody && !chord1 && !chord2) {
+    alert("少なくとも1つのMMLパートを入力してください。");
+    return;
+  }
 
+  if (!deleteToken) {
+    alert("削除用パスワードを入力してください。");
+    return;
+  }
+
+  const button = $("postButton");
+  button.disabled = true;
   setStatus("投稿中…");
 
   try {
     const deleteTokenHash = await sha256Hex(deleteToken);
 
-    await api("", {
+    await request(POSTS_API, {
       method: "POST",
       headers: {
         Prefer: "return=minimal"
@@ -599,28 +689,78 @@ $("postForm").addEventListener("submit", async (event) => {
     alert("投稿しました！");
     await loadPosts();
   } catch (error) {
-    setStatus("投稿できませんでした：" + error.message, true);
-    alert(
-      "投稿できませんでした。\n" +
-      error.message +
-      "\n\nSupabaseのテーブル設定・権限を確認してください。"
-    );
+    console.error("投稿エラー:", error);
+    setStatus("投稿失敗：" + error.message, true);
+    alert("投稿できませんでした。\n" + error.message);
   } finally {
-    if (submitButton) submitButton.disabled = false;
+    button.disabled = false;
   }
 });
 
+// ========================================
+// 通常の投稿削除
+// ========================================
+window.deletePost = async function(id) {
+  const post = findPost(id);
+  if (!post) return;
+
+  const token = prompt(
+    "この投稿を登録したときの削除用パスワードを入力してください。"
+  );
+
+  if (token === null || token === "") return;
+
+  if (!confirm(
+    "「" + post.title + "」を削除しますか？"
+  )) return;
+
+  try {
+    const tokenHash = await sha256Hex(token);
+
+    await request(DELETE_RPC, {
+      method: "POST",
+      body: JSON.stringify({
+        p_id: Number(id),
+        p_token_hash: tokenHash
+      })
+    });
+
+    alert("削除処理が完了しました。");
+    await loadPosts();
+  } catch (error) {
+    console.error("通常削除エラー:", error);
+    alert(
+      "削除できませんでした。\n" +
+      error.message +
+      "\nパスワードやSupabaseの設定を確認してください。"
+    );
+  }
+};
+
+// ========================================
+// 管理者ログイン
+// ========================================
 $("adminLoginForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const password = $("adminPassword").value;
-  if (!password) {
-    alert("管理者パスワードを入力してください。");
+  const passwordInput = $("adminPassword");
+  const loginButton = $("adminLoginButton");
+  const message = $("adminMessage");
+
+  if (!passwordInput || !loginButton || !message) {
+    alert("管理者ログイン欄が見つかりません。");
     return;
   }
 
-  $("adminLoginButton").disabled = true;
-  $("adminMessage").textContent = "確認中…";
+  const password = passwordInput.value;
+
+  if (!password) {
+    message.textContent = "管理者パスワードを入力してください。";
+    return;
+  }
+
+  loginButton.disabled = true;
+  message.textContent = "ログイン確認中…";
 
   try {
     const result = await request(ADMIN_API, {
@@ -632,36 +772,47 @@ $("adminLoginForm").addEventListener("submit", async (event) => {
     });
 
     if (!result || result.success !== true) {
-      throw new Error(result?.error || "ログインに失敗しました。");
+      throw new Error(
+        result?.error || "管理者ログインに失敗しました。"
+      );
     }
 
-    // パスワードはこのページを開いている間だけメモリに保持
+    // パスワードはページを開いている間だけ保持
     adminPasswordForSession = password;
-    $("adminPassword").value = "";
-    $("adminLogoutButton").hidden = false;
-    $("adminLoginButton").hidden = true;
-    $("adminState").textContent = "管理者ログイン中";
-    $("adminMessage").textContent = "管理者としてログインしました。";
 
-    render();
+    passwordInput.value = "";
+    loginButton.hidden = true;
+    $("adminLogoutButton").hidden = false;
+    $("adminState").textContent = "管理者ログイン中";
+    message.textContent = "ログインしました。";
+
+    renderPosts();
   } catch (error) {
+    console.error("管理者ログインエラー:", error);
     adminPasswordForSession = null;
-    $("adminMessage").textContent =
-      "ログイン失敗：" + error.message;
+    message.textContent = "ログイン失敗：" + error.message;
   } finally {
-    $("adminLoginButton").disabled = false;
+    loginButton.disabled = false;
   }
 });
 
+// ========================================
+// 管理者ログアウト
+// ========================================
 $("adminLogoutButton").addEventListener("click", () => {
   adminPasswordForSession = null;
-  $("adminLogoutButton").hidden = true;
+
   $("adminLoginButton").hidden = false;
+  $("adminLogoutButton").hidden = true;
   $("adminState").textContent = "ログアウト中";
   $("adminMessage").textContent = "ログアウトしました。";
-  render();
+
+  renderPosts();
 });
 
+// ========================================
+// 管理者による個別削除
+// ========================================
 window.adminDeletePost = async function(id) {
   if (!adminPasswordForSession) {
     alert("先に管理者ログインしてください。");
@@ -674,9 +825,7 @@ window.adminDeletePost = async function(id) {
   if (!confirm(
     "管理者権限で「" + post.title +
     "」を削除しますか？\nこの操作は取り消せません。"
-  )) {
-    return;
-  }
+  )) return;
 
   try {
     const result = await request(ADMIN_API, {
@@ -690,25 +839,33 @@ window.adminDeletePost = async function(id) {
 
     if (!result || result.success !== true) {
       throw new Error(
-        result?.error || "投稿が見つからないか、削除できませんでした。"
+        result?.error ||
+        "投稿が見つからないか、削除できませんでした。"
       );
     }
 
     alert("管理者権限で削除しました。");
     await loadPosts();
   } catch (error) {
+    console.error("管理者削除エラー:", error);
     alert(
       "管理者削除に失敗しました。\n" +
-      error.message +
-      "\n\nEdge Functionの設定・デプロイを確認してください。"
+      error.message
     );
   }
 };
 
-$("search").addEventListener("input", render);
-$("filterGenre").addEventListener("change", render);
+// ========================================
+// 検索・ジャンル絞り込み
+// ========================================
+$("search").addEventListener("input", renderPosts);
+$("filter").addEventListener("change", renderPosts);
 
+// ========================================
+// 起動
+// ========================================
 loadPosts();
 </script>
+
 </body>
 </html>
